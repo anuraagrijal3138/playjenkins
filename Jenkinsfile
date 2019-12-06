@@ -1,8 +1,9 @@
 pipeline {
 
   environment {
-    registry = "192.168.1.81:5000/justme/myweb"
-    dockerImage = ""
+    registry = 'anuraagrijal/hello-world-jenkins-kube'
+    registryCredential = 'dockerhub'
+    dockerImage = ''
   }
 
   agent any
@@ -26,17 +27,23 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "" ) {
+          docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
         }
+      }
+    }
+    
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
 
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
+          kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "kubeconfig")
         }
       }
     }
