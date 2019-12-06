@@ -12,7 +12,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/justmeandopensource/playjenkins.git'
+        git 'https://github.com/anuraagrijal3138/playjenkins.git'
       }
     }
 
