@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: anuraagrijal/hello-world-jenkins-kube:5
+      - image: anuraagrijal/hello-world-jenkins-kube:6
         imagePullPolicy: Always
         name: myweb
 
