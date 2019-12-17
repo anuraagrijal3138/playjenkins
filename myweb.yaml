@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: anuraagrijal/hello-world-jenkins-kube:4
+      - image: anuraagrijal/hello-world-jenkins-kube:6
         imagePullPolicy: Always
         name: myweb
 
