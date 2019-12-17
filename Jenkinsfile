@@ -43,7 +43,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          sh 'sed s/image-tag/$BUILD_NUMBER/g myweb.yaml'
+          sh 'sed -i s/image-tag/$BUILD_NUMBER/g myweb.yaml'
           kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "kubeconfig")
         }
       }
